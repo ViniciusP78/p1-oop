@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="WEB-INF/jspf/menu.jspf" %>
 
 <%@page import="fatecpg.poo.p1.Disciplina" %>
 <%@page import="java.util.ArrayList" %>

@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fatecpg.poo.p1.Disciplina" %>
 <%@page import="java.util.ArrayList" %>
+
+<%@include file="WEB-INF/jspf/menu.jspf" %>
 <!DOCTYPE html>
 <html>
     <head>
