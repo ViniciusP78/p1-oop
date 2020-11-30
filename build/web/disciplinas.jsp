@@ -29,6 +29,10 @@
                 
                 Disciplina.insert(nome, ementa, ciclo, nota);
             }
+            
+            if(request.getParameter("id")!=null){
+                Disciplina.delete(Long.parseLong(request.getParameter("id")));
+            }
         %>
         
         <table>
@@ -45,6 +49,12 @@
                 <td><%= d.getEmenta() %></td>
                 <td><%= d.getCiclo() %></td>
                 <td><%= d.getNota() %></td>
+                <td>
+                    <form>
+                        <input type="hidden" name="id" value="<%= d.getRowId()%>">
+                        <input type="submit" value="Apagar">
+                    </form>
+                </td>
             </tr>
             <%}%>
         </table>
