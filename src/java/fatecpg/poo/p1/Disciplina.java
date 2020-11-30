@@ -18,8 +18,8 @@ public class Disciplina {
     private long rowId;
     private String nome;
     private String ementa;
-    private int ciclo;
-    private double nota;
+    private Integer ciclo;
+    private Double nota;
     
     public static ArrayList<Disciplina> getList(){
         ArrayList<Disciplina> list = new ArrayList<>();
@@ -46,13 +46,13 @@ public class Disciplina {
         return list;
     }
     
-    public static void insert(String nome, String ementa, int ciclo, Double nota) {
+    public static void insert(String nome, String ementa, Integer ciclo, Double nota) {
         Connection con = null;
         PreparedStatement stmt = null;
         
         try {
             con = DBListener.getConnection();
-            stmt = con.prepareStatement("INSERT INTO disciplina VALUES(?,?,?,?");
+            stmt = con.prepareStatement("INSERT INTO disciplina VALUES(?,?,?,?)");
             stmt.setString(1, nome);
             stmt.setString(2, ementa);
             stmt.setInt(3, ciclo);
@@ -76,44 +76,15 @@ public class Disciplina {
             System.out.println(ex);
         }
     }
-    
-    
-    public Disciplina(long rowid, String nome, String ementa, int ciclo, double nota) {
-        this.rowId = rowid;
+
+    public Disciplina(long rowId, String nome, String ementa, Integer ciclo, Double nota) {
+        this.rowId = rowId;
         this.nome = nome;
         this.ementa = ementa;
         this.ciclo = ciclo;
         this.nota = nota;
     }
-    
-    public String getNome(){
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    public String getEmenta(){
-        return ementa;
-    }
-    public void setEmenta(String ementa) {
-        this.ementa = ementa;
-    }
-    
-    public int getCiclo(){
-        return ciclo;
-    }
-    public void setCiclo(int ciclo) {
-        this.ciclo = ciclo;
-    }
-    
-    public double getNota(){
-        return nota;
-    }
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
-    
+
     public long getRowId() {
         return rowId;
     }
@@ -121,11 +92,46 @@ public class Disciplina {
     public void setRowId(long rowId) {
         this.rowId = rowId;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmenta() {
+        return ementa;
+    }
+
+    public void setEmenta(String ementa) {
+        this.ementa = ementa;
+    }
+
+    public Integer getCiclo() {
+        return ciclo;
+    }
+
+    public void setCiclo(Integer ciclo) {
+        this.ciclo = ciclo;
+    }
+
+    public Double getNota() {
+        return nota;
+    }
+
+    public void setNota(Double nota) {
+        this.nota = nota;
+    }
+    
+    
+
     
     public static String getCreateStatement(){
         return "CREATE TABLE IF NOT EXISTS disciplina("
                 + "nome VARCHAR(50) UNIQUE NOT NULL,"
-                + "ementa VARCHAR(255) UNIQUE NOT NULL,"
+                + "ementa VARCHAR(255) NOT NULL,"
                 + "ciclo INT NOT NULL,"
                 + "nota DOUBLE NOT NULL"
                 + ")";

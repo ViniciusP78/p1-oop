@@ -16,7 +16,7 @@ import javax.servlet.ServletContextListener;
  */
 public class DBListener implements ServletContextListener {
     private static final String CLASS_NAME = "org.sqlite.JDBC";
-    private static final String DB_URL = "jdbc:sqlite:p2vinicius.db";
+    private static final String DB_URL = "jdbc:sqlite:C:\\p2vinicius.db";
     
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(DB_URL);

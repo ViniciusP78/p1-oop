@@ -21,26 +21,16 @@
         <h1>Minhas Disciplinas</h1>
         
         <%
-            ArrayList<Disciplina> disciplinas = (ArrayList)application.getAttribute("disciplinas");
-            
-            if (disciplinas == null) {
-                disciplinas = Disciplina.getList();
-            }
-            
-            String[] notas = request.getParameterValues("notas");
-            
-            if(notas != null) {
-                for (int i = 0; i < disciplinas.size(); i++ ) {
-                    disciplinas.get(i).setNota(Double.parseDouble(notas[i]));
-                }
+            if(request.getParameter("nome")!=null){
+                String nome = (String)request.getParameter("nome");
+                String ementa = (String)request.getParameter("ementa");
+                int ciclo = Integer.parseInt(request.getParameter("ciclo"));
+                Double nota = Double.parseDouble(request.getParameter("nota"));
                 
-            application.setAttribute("disciplinas", disciplinas);
+                Disciplina.insert(nome, ementa, ciclo, nota);
             }
-            
-            
         %>
         
-        <form>
         <table>
             <tr>
                 <th>Disciplinas</th>
@@ -49,21 +39,24 @@
                 <th>Nota</th>
                 <th>Alterar</th>
             </tr>
-            <% for ( Disciplina disciplina : disciplinas) { %>
+            <%for(Disciplina d: Disciplina.getList()) {%>
             <tr>
-                <td><%= disciplina.getNome() %></td>
-                <td><%= disciplina.getEmenta()%></td>
-                <td><%= disciplina.getCiclo()%></td>
-                <td><%= disciplina.getNota()%></td>
-                <td><input type="text" name="notas" value="<%= disciplina.getNota()%>"></td>
+                <td><%= d.getNome() %></td>
+                <td><%= d.getEmenta() %></td>
+                <td><%= d.getCiclo() %></td>
+                <td><%= d.getNota() %></td>
             </tr>
-            
             <%}%>
         </table>
-        <input type="submit" value="Enviar">
+        
+        <h2>Adicionar Disciplinas</h2>
+        <form>
+            <input type="text" name="nome" placeholder="Disciplina">
+            <input type="text" name="ementa" placeholder="Ementa">
+            <input type="text" name="ciclo" placeholder="Ciclo">
+            <input type="text" name="nota" placeholder="Nota">
+            <input type="submit" value="Enviar">
         </form>
-        
-        
         
     </body>
 </html>
